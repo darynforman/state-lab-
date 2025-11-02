@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 4: Shopping Cart</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🛒 Shopping Cart</h1>
+        <p class="subtitle">Exercise 4: Centralized Object Pattern</p>
+        
+        <div class="products">
+            <h3>Available Products:</h3>
+            <button class="product-btn" data-name="Apple" data-price="1.99">🍎 Add Apple ($1.99)</button>
+            <button class="product-btn" data-name="Banana" data-price="0.99">🍌 Add Banana ($0.99)</button>
+            <button class="product-btn" data-name="Orange" data-price="2.49">🍊 Add Orange ($2.49)</button>
+        </div>
+
+        <div id="display">
+            <!-- Cart items will be displayed here -->
+        </div>
+
+        <div class="instructions">
+            <h3>📝 Your Task:</h3>
+            <ol>
+                <li>Open <code>script.js</code> and complete all TODO items</li>
+                <li>Create state with an <code>items</code> array</li>
+                <li>Add items to cart (use spread operator)</li>
+                <li>Remove items by filtering the array</li>
+                <li>Calculate total using reduce()</li>
+                <li>Render the cart items as a list</li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

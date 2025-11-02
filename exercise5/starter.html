@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 5: User Profile Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📝 User Profile Form</h1>
+        <p class="subtitle">Exercise 5: Centralized Object Pattern</p>
+        
+        <div class="form-container">
+            <div class="form-group">
+                <label for="usernameInput">Username:</label>
+                <input type="text" id="usernameInput" placeholder="Enter username">
+                <div class="error" id="usernameError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="emailInput">Email:</label>
+                <input type="email" id="emailInput" placeholder="Enter email">
+                <div class="error" id="emailError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="ageInput">Age:</label>
+                <input type="number" id="ageInput" placeholder="Enter age">
+                <div class="error" id="ageError"></div>
+            </div>
+        </div>
+
+        <div id="display">
+            <!-- Validation status will be displayed here -->
+        </div>
+
+        <div class="instructions">
+            <h3>📝 Your Task:</h3>
+            <ol>
+                <li>Open <code>script.js</code> and complete all TODO items</li>
+                <li>Create state with: username, email, age, errors, isValid</li>
+                <li>Implement validation function with rules:
+                    <ul>
+                        <li>Username ≥ 3 characters</li>
+                        <li>Email must contain @</li>
+                        <li>Age between 13-120</li>
+                    </ul>
+                </li>
+                <li>Update state on input changes</li>
+                <li>Show errors and success message conditionally</li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

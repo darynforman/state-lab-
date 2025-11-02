@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centralized Object Pattern - Complete Course</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .exercise-card {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .exercise-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .exercise-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .easy {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .medium {
+            background: #fff3cd;
+            color: #856404;
+            border-left-color: #f39c12;
+        }
+
+        .medium .exercise-card {
+            border-left-color: #f39c12;
+        }
+
+        .advanced {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .section.advanced .exercise-card {
+            border-left-color: #e74c3c;
+        }
+
+        .section.medium .exercise-card {
+            border-left-color: #f39c12;
+        }
+
+        .exercise-card p {
+            color: #555;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+
+        .time {
+            font-size: 0.85em;
+            color: #999;
+            font-style: italic;
+        }
+
+        .links {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .links a {
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: transform 0.2s;
+        }
+
+        .links a:hover {
+            transform: translateY(-2px);
+        }
+
+        .starter {
+            background: #667eea;
+            color: white;
+        }
+
+        .solution {
+            background: #38ef7d;
+            color: white;
+        }
+
+        .stats {
+            background: #e7f3ff;
+            border: 2px solid #2196F3;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .stats h3 {
+            color: #2196F3;
+            margin-bottom: 15px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Centralized Object Pattern</h1>
+        <p class="subtitle">Complete Course: 25 Progressive Exercises</p>
+
+        <div class="stats">
+            <h3>📊 Course Overview</h3>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">25</div>
+                    <div class="stat-label">Total Exercises</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Easy</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Medium</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Advanced</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">12-15</div>
+                    <div class="stat-label">Hours Total</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EASY EXERCISES -->
+        <div class="section easy">
+            <h2>🟢 Easy Level (Exercises 1-5)</h2>
+            <div class="exercise-grid">
+                <div class="exercise-card">
+                    <h3>Exercise 1: Color Picker</h3>
+                    <span class="difficulty easy">Easy</span>
+                    <p>Build a simple color picker. Learn basic state management.</p>
+                    <p class="time">⏱️ 15-20 minutes</p>
+                    <div class="links">
+                        <a href="exercise1/starter.html" class="starter">Start</a>
+                        <a href="exercise1/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 2: Todo Toggle</h3>
+                    <span class="difficulty easy">Easy</span>
+                    <p>Toggle task completion status with visual feedback.</p>
+                    <p class="time">⏱️ 20-25 minutes</p>
+                    <div class="links">
+                        <a href="exercise2/starter.html" class="starter">Start</a>
+                        <a href="exercise2/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 3: Temperature Converter</h3>
+                    <span class="difficulty easy">Easy</span>
+                    <p>Convert Celsius to Fahrenheit in real-time.</p>
+                    <p class="time">⏱️ 25-30 minutes</p>
+                    <div class="links">
+                        <a href="exercise3/starter.html" class="starter">Start</a>
+                        <a href="exercise3/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 4: Shopping Cart</h3>
+                    <span class="difficulty easy">Easy</span>
+                    <p>Add/remove items and calculate totals.</p>
+                    <p class="time">⏱️ 35-45 minutes</p>
+                    <div class="links">
+                        <a href="exercise4/starter.html" class="starter">Start</a>
+                        <a href="exercise4/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 5: User Profile Form</h3>
+                    <span class="difficulty easy">Easy</span>
+                    <p>Build a form with validation and error handling.</p>
+                    <p class="time">⏱️ 45-60 minutes</p>
+                    <div class="links">
+                        <a href="exercise5/starter.html" class="starter">Start</a>
+                        <a href="exercise5/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MEDIUM EXERCISES -->
+        <div class="section medium">
+            <h2>🟡 Medium Level (Exercises 6-15)</h2>
+            <div class="exercise-grid">
+                <div class="exercise-card">
+                    <h3>Exercise 6: Todo List Manager</h3>
+                    <span class="difficulty medium">Medium</span>
+                    <p>Full todo list with add, edit, delete, and filter.</p>
+                    <p class="time">⏱️ 45-60 minutes</p>
+                    <div class="links">
+                        <a href="exercise6/starter.html" class="starter">Start</a>
+                        <a href="exercise6/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 7: Modal Dialog System</h3>
+                    <span class="difficulty medium">Medium</span>
+                    <p>Create reusable modal with open/close state management.</p>
+                    <p class="time">⏱️ 40-50 minutes</p>
+                    <div class="links">
+                        <a href="exercise7/starter.html" class="starter">Start</a>
+                        <a href="exercise7/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 8: Tabs Component</h3>
+                    <span class="difficulty medium">Medium</span>
+                    <p>Build a tabbed interface with dynamic content.</p>
+                    <p class="time">⏱️ 40-50 minutes</p>
+                    <div class="links">
+                        <a href="exercise8/starter.html" class="starter">Start</a>
+                        <a href="exercise8/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 9: Accordion Menu</h3>
+                    <span class="difficulty medium">Medium</span>
+                    <p>Expandable/collapsible sections with state tracking.</p>
+                    <p class="time">⏱️ 40-50 minutes</p>
+                    <div class="links">
+                        <a href="exercise9/starter.html" class="starter">Start</a>
+                        <a href="exercise9/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 10: Pagination System</h3>
+                    <span class="difficulty medium">Medium</span>
+                    <p>Paginate data with page navigation controls.</p>
+                    <p class="time">⏱️ 45-55 minutes</p>
+                    <div class="links">
+                        <a href="exercise10/starter.html" class="starter">Start</a>
+                        <a href="exercise10/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 11: Search & Filter</h3>
+                    <span class="difficulty medium">Medium</span>
+                    <p>Filter list items with real-time search.</p>
+                    <p class="time">⏱️ 40-50 minutes</p>
+                    <div class="links">
+                        <a href="exercise11/starter.html" class="starter">Start</a>
+                        <a href="exercise11/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 12: Star Rating Widget</h3>
+                    <span class="difficulty medium">Medium</span>
+                    <p>Interactive star rating with hover effects.</p>
+                    <p class="time">⏱️ 35-45 minutes</p>
+                    <div class="links">
+                        <a href="exercise12/starter.html" class="starter">Start</a>
+                        <a href="exercise12/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 13: Timer/Stopwatch</h3>
+                    <span class="difficulty medium">Medium</span>
+                    <p>Build a timer with start, pause, and reset.</p>
+                    <p class="time">⏱️ 45-55 minutes</p>
+                    <div class="links">
+                        <a href="exercise13/starter.html" class="starter">Start</a>
+                        <a href="exercise13/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 14: Multi-Step Form</h3>
+                    <span class="difficulty medium">Medium</span>
+                    <p>Wizard-style form with step navigation.</p>
+                    <p class="time">⏱️ 50-60 minutes</p>
+                    <div class="links">
+                        <a href="exercise14/starter.html" class="starter">Start</a>
+                        <a href="exercise14/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 15: Image Gallery</h3>
+                    <span class="difficulty medium">Medium</span>
+                    <p>Gallery with lightbox and navigation controls.</p>
+                    <p class="time">⏱️ 45-55 minutes</p>
+                    <div class="links">
+                        <a href="exercise15/starter.html" class="starter">Start</a>
+                        <a href="exercise15/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADVANCED EXERCISES -->
+        <div class="section advanced">
+            <h2>🔴 Advanced Level (Exercises 16-25)</h2>
+            <div class="exercise-grid">
+                <div class="exercise-card">
+                    <h3>Exercise 16: Drag & Drop List</h3>
+                    <span class="difficulty advanced">Advanced</span>
+                    <p>Reorderable list items with drag and drop.</p>
+                    <p class="time">⏱️ 60-75 minutes</p>
+                    <div class="links">
+                        <a href="exercise16/starter.html" class="starter">Start</a>
+                        <a href="exercise16/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 17: Undo/Redo System</h3>
+                    <span class="difficulty advanced">Advanced</span>
+                    <p>Implement history tracking with undo/redo.</p>
+                    <p class="time">⏱️ 60-75 minutes</p>
+                    <div class="links">
+                        <a href="exercise17/starter.html" class="starter">Start</a>
+                        <a href="exercise17/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 18: Kanban Board</h3>
+                    <span class="difficulty advanced">Advanced</span>
+                    <p>Task board with drag-drop between columns.</p>
+                    <p class="time">⏱️ 75-90 minutes</p>
+                    <div class="links">
+                        <a href="exercise18/starter.html" class="starter">Start</a>
+                        <a href="exercise18/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 19: Data Table with Sorting</h3>
+                    <span class="difficulty advanced">Advanced</span>
+                    <p>Sortable table with multiple columns.</p>
+                    <p class="time">⏱️ 60-75 minutes</p>
+                    <div class="links">
+                        <a href="exercise19/starter.html" class="starter">Start</a>
+                        <a href="exercise19/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 20: Quiz Application</h3>
+                    <span class="difficulty advanced">Advanced</span>
+                    <p>Multi-question quiz with scoring and results.</p>
+                    <p class="time">⏱️ 75-90 minutes</p>
+                    <div class="links">
+                        <a href="exercise20/starter.html" class="starter">Start</a>
+                        <a href="exercise20/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 21: Calendar Widget</h3>
+                    <span class="difficulty advanced">Advanced</span>
+                    <p>Monthly calendar with event management.</p>
+                    <p class="time">⏱️ 75-90 minutes</p>
+                    <div class="links">
+                        <a href="exercise21/starter.html" class="starter">Start</a>
+                        <a href="exercise21/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 22: Tree View Component</h3>
+                    <span class="difficulty advanced">Advanced</span>
+                    <p>Hierarchical tree with expand/collapse.</p>
+                    <p class="time">⏱️ 60-75 minutes</p>
+                    <div class="links">
+                        <a href="exercise22/starter.html" class="starter">Start</a>
+                        <a href="exercise22/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 23: Form Builder</h3>
+                    <span class="difficulty advanced">Advanced</span>
+                    <p>Dynamic form with add/remove fields.</p>
+                    <p class="time">⏱️ 75-90 minutes</p>
+                    <div class="links">
+                        <a href="exercise23/starter.html" class="starter">Start</a>
+                        <a href="exercise23/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 24: Chat Interface</h3>
+                    <span class="difficulty advanced">Advanced</span>
+                    <p>Real-time chat UI with message history.</p>
+                    <p class="time">⏱️ 75-90 minutes</p>
+                    <div class="links">
+                        <a href="exercise24/starter.html" class="starter">Start</a>
+                        <a href="exercise24/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Exercise 25: Dashboard</h3>
+                    <span class="difficulty advanced">Advanced</span>
+                    <p>Complete dashboard with multiple widgets.</p>
+                    <p class="time">⏱️ 90-120 minutes</p>
+                    <div class="links">
+                        <a href="exercise25/starter.html" class="starter">Start</a>
+                        <a href="exercise25/solution.html" class="solution">Solution</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

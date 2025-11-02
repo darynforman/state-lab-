@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 3: Temperature Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🌡️ Temperature Converter</h1>
+        <p class="subtitle">Exercise 3: Centralized Object Pattern</p>
+        
+        <div class="input-group">
+            <label for="celsiusInput">Enter Celsius:</label>
+            <input type="number" id="celsiusInput" placeholder="0">
+        </div>
+
+        <div id="display">
+            <!-- Conversion result will be displayed here -->
+        </div>
+
+        <div class="instructions">
+            <h3>📝 Your Task:</h3>
+            <ol>
+                <li>Open <code>script.js</code> and complete all TODO items</li>
+                <li>Create state with a <code>celsius</code> property</li>
+                <li>Calculate Fahrenheit using: <code>(C × 9/5) + 32</code></li>
+                <li>Listen to input changes and update state</li>
+                <li>Display both temperatures in real-time</li>
+            </ol>
+            <p style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #2196F3;">
+                <strong>Hint:</strong> Fahrenheit is calculated from celsius, so don't store it in state!
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
